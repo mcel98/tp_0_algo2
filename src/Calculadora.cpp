@@ -177,15 +177,3 @@ void Calculadora::FREAD(Id idVar){
 
 }
 
-void Calculadora::FJUMP(Id idRutina) {
-ejecutar(idRutina);
-}
-
-void Calculadora::FJUMPZ(Id idRutina) {
-    if(pila.size() == 0 || pila[pila.size()-1] == 0 ){
-
-        ejecutar(idRutina);
-    }
-
-
-}
