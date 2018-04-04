@@ -10,6 +10,17 @@ class Calculadora{
 
 public:
     Calculadora(Programa programa);
+    int valorVariable(Id idVariable) const;
+    void asignarVariable(Id idVariable, int valor);
+    void ejecutar(Id idRutina);
+    void FPUSH(int valor);
+    void FADD();
+    void FSUB();
+    void FMUL();
+    void FWRITE(Id idVar);
+    void FREAD(Id idVar);
+    void FJUMP(Id idRutina);
+    void FJUMPZ(Id idRutina);
 
 
 private:
@@ -17,18 +28,14 @@ private:
         Id IdVar;
         int Valor;
         Var(Id idVar,int valor);
-
     };
-    struct Memoria{
-        void asignarVariable(Id idVariable, int valor);
-        Memoria();
-        vector <Var> _Mem;
 
-    };
+
+
+
+    vector <Var> _Mem;
     vector<int> pila;
     Programa _programa;
-
-
 
 
 

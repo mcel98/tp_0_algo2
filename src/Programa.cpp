@@ -67,7 +67,9 @@ Instruccion Programa::instruccion(Id idRutina, int i) const {
 
     for(int j = 0; j<_Prog.size();j++){
         if(_Prog[j].IdRutina == idRutina){
-            return  _Prog[j]._Rutina[i];
+            if(i < _Prog[j]._Rutina.size()) {
+                return _Prog[j]._Rutina[i];
+            }
         }
 
     }
