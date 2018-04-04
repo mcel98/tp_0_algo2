@@ -30,7 +30,9 @@ void Calculadora::asignarVariable(Id idVariable, int valor) {
 
 void Calculadora::ejecutar(Id idRutina)  {
     if(_programa.esRutinaExistente(idRutina)){
-        for(int i = 0; i < _programa.longitud(idRutina); i++){
+        int i=0;
+        int rutinaL =_programa.longitud(idRutina);
+        while( i < rutinaL){
             Instruccion inst = _programa.instruccion(idRutina,i);
                 if(inst.operacion() == ADD){
                     FADD();
@@ -51,15 +53,26 @@ void Calculadora::ejecutar(Id idRutina)  {
                     FREAD(inst.nombre());
 
                 }else if(inst.operacion() == JUMP){
-                    FJUMP(inst.nombre());
-
+                    if(_programa.esRutinaExistente(inst.nombre())) {
+                        rutinaL = _programa.longitud(inst.nombre());
+                        i=0;
+                    }else {
+                        i= rutinaL;
+                    }
                 } else{
-                    FJUMPZ(inst.nombre());
+                    if(_programa.esRutinaExistente(inst.nombre())) {
+                        if(pila[pila.size()-1] == 0) {
+                            rutinaL = _programa.longitud(inst.nombre());
+                            i = 0;
+                        }
+                    }else {
+                        i= rutinaL;
+                    }
 
                 }
 
 
-
+            i++;
 
         }
 

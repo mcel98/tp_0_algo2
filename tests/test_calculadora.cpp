@@ -31,9 +31,27 @@ TEST(Test_Calculadora, Ejecucion_ProgramaConUnaRutina_Operaciones_Aritmeticas){
 EXPECT_EQ(c.valorVariable("x"),21);
 
 
+}
 
 
+
+TEST(Test_Calculadora, Ejecucion_ProgramaConUnaRutinaX_Operaciones_Aritmeticas){
+    Programa q;
+
+    q.agregarInstruccion("X", Instruccion(READ, "n"));
+    q.agregarInstruccion("X", Instruccion(PUSH, 1));
+    q.agregarInstruccion("X", Instruccion(SUB));
+    //q.agregarInstruccion("X", Instruccion(WRITE, "n"));
+    q.agregarInstruccion("X", Instruccion(READ, "n"));
+    q.agregarInstruccion("X", Instruccion(WRITE, "n"));
+    q.agregarInstruccion("X", Instruccion(JUMPZ, "END"));
+    q.agregarInstruccion("X", Instruccion(JUMP, "Y"));
+
+    Calculadora c = Calculadora(q);
+
+    c.asignarVariable("n", 2);
+    c.ejecutar("X");
+    EXPECT_EQ(c.valorVariable("x"),2);
 
 
 }
-
