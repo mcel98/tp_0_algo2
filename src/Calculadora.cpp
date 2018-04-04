@@ -118,7 +118,11 @@ void Calculadora::FADD() {
 
 void Calculadora::FSUB() {
     int resta;
-    if(pila.size() > 1) {
+    if(pila.size() == 0){
+        resta = 0;
+        pila.push_back(resta);
+
+    }else if(pila.size() > 1) {
         resta = pila[pila.size()-2] - pila[pila.size()-1];
         for(int i=0; i<2; i++) {
 
@@ -126,10 +130,6 @@ void Calculadora::FSUB() {
 
         }
         pila.push_back(resta);
-    }else if(pila.size() == 0){
-        resta = 0;
-        pila.push_back(resta);
-
     }
 
 
