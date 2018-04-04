@@ -15,7 +15,17 @@ Calculadora::Calculadora(Programa programa){
 
 void Calculadora::asignarVariable(Id idVariable, int valor) {
     Var variable = Var(idVariable,valor);
-    _Mem.push_back(variable);
+    int existe = 0;
+    for(int i =0; i <_Mem.size(); i++) {
+        if(_Mem[i].IdVar == idVariable) {
+            _Mem[i].Valor = valor;
+            existe = 1;
+        }
+    }
+    if(existe == 0){
+
+        _Mem.push_back(variable);
+    }
 }
 
 void Calculadora::ejecutar(Id idRutina)  {
@@ -80,13 +90,13 @@ void Calculadora::FPUSH(int valor) {
 void Calculadora::FADD() {
     int suma = 0;
     if(pila.size() > 1) {
-        for (int i = 0; i >= 1; i++) {
+        for (int i = 0; i <2; i++) {
             suma += pila[pila.size()-1];
             pila.pop_back();
         }
         pila.push_back(suma);
     }else if(pila.size() == 0){
-        suma = 0;
+
         pila.push_back(suma);
 
     }
@@ -115,8 +125,8 @@ void Calculadora::FSUB() {
 void Calculadora::FMUL() {
     int mul = 1;
     if(pila.size() > 1) {
-        for (int i = 0; i >= 1; i++) {
-            mul *= pila[pila.size()-1];
+        for (int i = 0; i < 2; i++) {
+            mul = mul * pila[pila.size()-1];
             pila.pop_back();
         }
         pila.push_back(mul);
@@ -131,8 +141,13 @@ void Calculadora::FMUL() {
 void Calculadora::FWRITE(Id idVar) {
     for(int i =0; i< _Mem.size();i++){
         if(idVar == _Mem[i].IdVar){
-            asignarVariable(idVar, pila[pila.size()-1]);
-            pila.pop_back();
+            if(pila.size()>0) {
+                asignarVariable(idVar, pila[pila.size() - 1]);
+                pila.pop_back();
+            }else{
+                asignarVariable(idVar,0);
+
+            }
         }
 
 
