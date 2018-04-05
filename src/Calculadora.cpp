@@ -54,16 +54,14 @@ void Calculadora::ejecutar(Id idRutina)  {
 
                 }else if(inst.operacion() == JUMP){
                     if(_programa.esRutinaExistente(inst.nombre())) {
-                        rutinaL = _programa.longitud(inst.nombre());
-                        i=0;
+                        ejecutar(inst.nombre());
                     }else {
                         i= rutinaL;
                     }
                 } else{
                     if(_programa.esRutinaExistente(inst.nombre())) {
                         if(pila[pila.size()-1] == 0) {
-                            rutinaL = _programa.longitud(inst.nombre());
-                            i = 0;
+                            ejecutar(inst.nombre());
                         }
                     }else {
                         i= rutinaL;
@@ -102,16 +100,16 @@ void Calculadora::FPUSH(int valor) {
 
 void Calculadora::FADD() {
     int suma = 0;
-    if(pila.size() > 1) {
+    if(pila.size() == 0){
+
+        pila.push_back(suma);
+
+    } else if(pila.size() > 1) {
         for (int i = 0; i <2; i++) {
             suma += pila[pila.size()-1];
             pila.pop_back();
         }
         pila.push_back(suma);
-    }else if(pila.size() == 0){
-
-        pila.push_back(suma);
-
     }
 
 }
@@ -137,32 +135,44 @@ void Calculadora::FSUB() {
 
 void Calculadora::FMUL() {
     int mul = 1;
-    if(pila.size() > 1) {
+    if(pila.size() == 0){
+        mul = 0;
+        pila.push_back(mul);
+
+    }
+    else if(pila.size() > 1) {
         for (int i = 0; i < 2; i++) {
             mul = mul * pila[pila.size()-1];
             pila.pop_back();
         }
         pila.push_back(mul);
-    }else if(pila.size() == 0){
-        mul = 0;
-        pila.push_back(mul);
-
     }
 
 }
 
 void Calculadora::FWRITE(Id idVar) {
-    for(int i =0; i< _Mem.size();i++){
-        if(idVar == _Mem[i].IdVar){
-            if(pila.size()>0) {
-                asignarVariable(idVar, pila[pila.size() - 1]);
-                pila.pop_back();
-            }else{
-                asignarVariable(idVar,0);
+    if(_Mem.size() == 0){
+        if(pila.size() == 0 ) {
 
+            asignarVariable(idVar,0);
+
+        }else{
+
+            asignarVariable(idVar, pila[pila.size() - 1]);
+        }
+    }else{
+      for(int i =0; i< _Mem.size();i++) {
+          if (idVar == _Mem[i].IdVar) {
+                if (pila.size() == 0) {
+                    asignarVariable(idVar, 0);
+                } else {
+
+                    asignarVariable(idVar, pila[pila.size() - 1]);
+                    pila.pop_back();
+
+                }
             }
         }
-
 
     }
 
