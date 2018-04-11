@@ -19,7 +19,7 @@ public:
     void FMUL();
     void FWRITE(Id idVar);
     void FREAD(Id idVar);
-    
+
 
 
 private:

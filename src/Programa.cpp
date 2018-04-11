@@ -12,7 +12,7 @@ Programa::Programa(){
 
 }
 
-void Programa::agregarInstruccion(Id idRutina, Instruccion instruccion) {
+void Programa::agregarInstruccion(Id idRutina, Instruccion instruccion){
     int existe = 0;
     for(int i =0; i< _Prog.size(); i++) {
 

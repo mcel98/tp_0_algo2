@@ -7,9 +7,8 @@ Calculadora::Var::Var(Id idVar, int valor) {
     Valor = valor;
 }
 
-Calculadora::Calculadora(Programa programa){
-    _programa = programa;
-
+Calculadora::Calculadora(Programa programa): _programa(programa){
+    
 }
 
 
