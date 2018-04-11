@@ -19,8 +19,7 @@ public:
     void FMUL();
     void FWRITE(Id idVar);
     void FREAD(Id idVar);
-    void FJUMP(Id idRutina);
-    void FJUMPZ(Id idRutina);
+    
 
 
 private:
