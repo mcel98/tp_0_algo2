@@ -13,16 +13,16 @@ Programa::Programa(){
 }
 
 void Programa::agregarInstruccion(Id idRutina, Instruccion instruccion){
-    int existe = 0;
+    bool existe = false;
     for(int i =0; i< _Prog.size(); i++) {
 
         if (_Prog[i].IdRutina == idRutina) {
               _Prog[i]._Rutina.push_back(instruccion);
-                existe = 1;
+                existe = true;
           }
 
       }
-    if(existe == 0){
+    if(!existe){
         vector<Instruccion > RVacio;
         RVacio.push_back(instruccion);
         Rutina NuevaRutina = Rutina(idRutina, RVacio);
@@ -48,10 +48,7 @@ int Programa::longitud(Id idRutina) const {
 
         for(int i =0; i <_Prog.size(); i++ ){
             if(_Prog[i].IdRutina == idRutina){
-               for(int j = 0; j<_Prog[i]._Rutina.size();j++){
-                 length ++;
-
-               }
+               length = idRutina.size();
 
             }
 

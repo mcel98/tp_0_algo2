@@ -13,12 +13,7 @@ public:
     int valorVariable(Id idVariable) const;
     void asignarVariable(Id idVariable, int valor);
     void ejecutar(Id idRutina);
-    void FPUSH(int valor);
-    void FADD();
-    void FSUB();
-    void FMUL();
-    void FWRITE(Id idVar);
-    void FREAD(Id idVar);
+
 
 
 
@@ -26,7 +21,7 @@ private:
     struct Var{
         Id IdVar;
         int Valor;
-        Var(Id idVar,int valor);
+        Var(Id idVar,int valor):IdVar(idVar), Valor(valor){};
     };
 
 
@@ -35,6 +30,13 @@ private:
     vector <Var> _Mem;
     vector<int> pila;
     Programa _programa;
+
+    void FPUSH(int valor);
+    void FADD();
+    void FSUB();
+    void FMUL();
+    void FWRITE(Id idVar);
+    void FREAD(Id idVar);
 
 
 
