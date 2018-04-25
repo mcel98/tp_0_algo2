@@ -62,7 +62,7 @@ public:
 private:
 	// COMPLETAR
     struct Rutina {
-        Rutina(Id nombre, vector<Instruccion> rutina);
+        Rutina(Id nombre, vector<Instruccion> rutina):IdRutina(nombre), _Rutina(rutina){}
         Id IdRutina;
         vector<Instruccion> _Rutina;
     };

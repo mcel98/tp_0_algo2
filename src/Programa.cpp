@@ -2,10 +2,7 @@
 // Created by jampuero on 03/04/18.
 //
 #include "Programa.h"
-Programa::Rutina::Rutina(Id nombre, vector<Instruccion> Rutina){
-    IdRutina = nombre;
-    _Rutina = Rutina;
-    }
+
 Programa::Programa(){
     vector<Rutina> programa;
     _Prog = programa;
@@ -18,11 +15,11 @@ void Programa::agregarInstruccion(Id idRutina, Instruccion instruccion){
 
         if (_Prog[i].IdRutina == idRutina) {
               _Prog[i]._Rutina.push_back(instruccion);
-                existe = true;
+              existe = true;
           }
 
       }
-    if(!existe){
+    if(existe == false){
         vector<Instruccion > RVacio;
         RVacio.push_back(instruccion);
         Rutina NuevaRutina = Rutina(idRutina, RVacio);
@@ -48,7 +45,7 @@ int Programa::longitud(Id idRutina) const {
 
         for(int i =0; i <_Prog.size(); i++ ){
             if(_Prog[i].IdRutina == idRutina){
-               length = idRutina.size();
+               length = _Prog[i]._Rutina.size();
 
             }
 

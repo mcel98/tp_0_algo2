@@ -17,7 +17,7 @@ void Calculadora::asignarVariable(Id idVariable, int valor) {
             existe = true;
         }
     }
-    if(existe == false){
+    if(!existe){
 
         _Mem.push_back(variable);
     }
@@ -104,9 +104,10 @@ void Calculadora::FADD() {
         suma = pila[pila.size() - 1] + pila[pila.size() - 2];
         pila.pop_back();
         pila.pop_back();
+        pila.push_back(suma);
     }
 
-        pila.push_back(suma);
+
 
 
 }
@@ -121,18 +122,23 @@ void Calculadora::FSUB() {
         resta = pila[pila.size()-2] - pila[pila.size()-1];
             pila.pop_back();
             pila.pop_back();
+        pila.push_back(resta);
 
         }
-        pila.push_back(resta);
+    else{
+        resta= pila[0];
+    }
+
 
 
 
 }
 
 void Calculadora::FMUL() {
-    int mul = 1;
+    int mul;
     if(pila.size() == 0){
         mul = 0;
+        pila.push_back(mul);
 
 
     }
@@ -141,12 +147,13 @@ void Calculadora::FMUL() {
             mul = pila[pila.size()-2] * pila[pila.size()-1];
             pila.pop_back();
             pila.pop_back();
+        pila.push_back(mul);
 
 
     }else{
         mul = pila[0];
     }
-    pila.push_back(mul);
+
 }
 
 void Calculadora::FWRITE(Id idVar) {
@@ -158,6 +165,7 @@ void Calculadora::FWRITE(Id idVar) {
         }else{
 
             asignarVariable(idVar, pila[pila.size() - 1]);
+            pila.pop_back();
         }
     }else{
       for(int i =0; i< _Mem.size();i++) {
